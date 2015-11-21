@@ -61,7 +61,7 @@ class ForumsSpider(CrawlSpider):
         condition="adhd"
         
         for post in posts:
-            item = PostItemsList()
+            item = PostItemsList();
             item['author'] = post.xpath('.//a[contains(@class,"user-link user")]/text()').extract()[0]
             item['author_link'] = post.xpath('.//a[contains(@class,"user-link user")]/@href').extract()[0]
             item['condition'] = condition
