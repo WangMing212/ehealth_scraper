@@ -48,6 +48,13 @@ class ForumsSpider(CrawlSpider):
         if printableOnly:
             return filter(lambda x: x in string.printable, text)
         return text
+        
+    def getDate(self,date_str):
+        # date_str="Fri Feb 12, 2010 1:54 pm"
+        date = dateparser.parse(date_str)
+        epoch = int(date.strftime('%s'))
+        create_date = time.strftime("%Y-%m-%d'T'%H:%M%S%z",  time.gmtime(epoch))
+        return create_date
 
     # https://github.com/scrapy/dirbot/blob/master/dirbot/spiders/dmoz.py
     # https://github.com/scrapy/dirbot/blob/master/dirbot/pipelines.py
